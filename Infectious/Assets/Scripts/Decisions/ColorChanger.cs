@@ -11,6 +11,10 @@ public class ColorChanger : MonoBehaviour {
     Renderer rend;
     public GameObject mapSegment;
     public float compressionRate = 100f;
+    private float timer;
+    public float transitionlength;
+    private Color newColor;
+    private Color oldColor;
 
     private void Awake()
     {
@@ -22,20 +26,45 @@ public class ColorChanger : MonoBehaviour {
     {
         rend = this.GetComponent<Renderer>();
         colorProgress = 0f;
+        timer = 0.0f;
+        transitionlength = 2.0f;
+        oldColor = Color.white;
+        newColor = Color.white;
     }
 
     // Update is called once per frame
     void Update() 
     {
-        gradientColor = Color.Lerp(Color.white, Color.red, colorProgress);
+
+
+        gradientColor = Color.Lerp(oldColor, newColor, (1 * (timer / transitionlength)));
         rend.material.color = gradientColor;
-        Debug.Log(rend.material.color);
+        //newColor = new Color(1.0f, 1.0f - colorProgress, 1.0f - colorProgress);
+       // Debug.Log(rend.material.color);
         Debug.Log(colorProgress);
+        //Debug.Log(newColor);
+
+        timer += Time.deltaTime;
+        //if (timer > transitionlength) {
+            
+        //    timer = timer - transitionlength;
+            
+        //}
+
+
 
     }
 
     public void ProgressUpdate(float progressValue) {
-        colorProgress = progressValue / compressionRate;
+
+        colorProgress = progressValue;
+        newColor = Color.Lerp(Color.white, Color.red, colorProgress);
+        oldColor = gradientColor;
+        
+    }
+
+    public void ResetTimer() {
+        timer = 0;
     }
 }
     

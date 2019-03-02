@@ -407,7 +407,6 @@ GameObject:
   m_Component:
   - component: {fileID: 246148898}
   - component: {fileID: 246148897}
-  - component: {fileID: 246148899}
   - component: {fileID: 246148900}
   - component: {fileID: 246148901}
   - component: {fileID: 246148902}
@@ -430,8 +429,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8ff241118a8c44a42b0da82ae32f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTick: 1
+  baseTick: 5
   tick: 5
+  Steps: 3
+  bias: 0.0001
 --- !u!4 &246148898
 Transform:
   m_ObjectHideFlags: 0
@@ -446,21 +447,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &246148899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 246148896}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fefabafe25fadb4798e315465011f67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gradientColor: {r: 1, g: 1, b: 1, a: 1}
-  mapSegment: {fileID: 1020716744}
-  compressionRate: 100
 --- !u!114 &246148900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -995,7 +981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gradientColor: {r: 1, g: 1, b: 1, a: 1}
   mapSegment: {fileID: 0}
-  compressionRate: 100
+  compressionRate: 50
+  transitionlength: 0
 --- !u!65 &1020716746
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -13,6 +13,9 @@ public class PointLog : MonoBehaviour
     public float tick = 5.0f;
     private float timer = 0.0f;
     private System.DateTime gameDate;
+    public int Steps;
+    private bool rising = false;
+    public float bias = 0.0001f;
 
     GameObject LM;
 
@@ -24,8 +27,8 @@ public class PointLog : MonoBehaviour
     {
         
         LM = this.gameObject;
-        Wert01 += 1.0f;
-        tickrateNEW = baseTick;
+        
+        //tickrateNEW = baseTick;
         
         GameDate = System.DateTime.Today;
 
@@ -39,13 +42,16 @@ public class PointLog : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > tick) 
         {
-            Wert01 = Wert01 + tickrateNEW;
-            tickrateCURRENT = tickrateNEW;
+            //Wert01 = Wert01 + tickrateNEW;
+            //tickrateCURRENT = tickrateNEW;
             timer = timer - tick;
             GameDate = GameDate.AddDays(1);
             Debug.Log(Wert01);
-            Debug.Log(tickrateNEW);
-            Debug.Log(baseTick);
+            //Debug.Log(tickrateNEW);
+            //Debug.Log(baseTick);
+        }
+        if (rising == true) {
+            Wert01 += bias;
         }
 
        
@@ -53,12 +59,18 @@ public class PointLog : MonoBehaviour
 
     public void AddValue() 
     {
-        tickrateNEW = tickrateCURRENT * 1.1f;
+        //tickrateNEW = tickrateCURRENT * 1.1f;
+        Wert01 += (1.0f / Steps);
+        ColorChanger.colorChanger.ResetTimer();
+        //ColorChanger.colorChanger.ProgressUpdate(Wert01);
+        rising = true;
     }
 
     public void SubtractValue() 
     {
-        tickrateNEW = tickrateCURRENT * 0.9f;
+        //tickrateNEW = tickrateCURRENT * 0.9f;
+        Wert01 -= (1.0f / Steps);
+        ColorChanger.colorChanger.ProgressUpdate(Wert01);
     }
 
     
