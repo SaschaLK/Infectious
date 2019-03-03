@@ -982,7 +982,8 @@ MonoBehaviour:
   gradientColor: {r: 1, g: 1, b: 1, a: 1}
   mapSegment: {fileID: 0}
   compressionRate: 50
-  transitionlength: 0
+  updateTime: 1
+  colorFadeTime: 5
 --- !u!65 &1020716746
 BoxCollider:
   m_ObjectHideFlags: 0
