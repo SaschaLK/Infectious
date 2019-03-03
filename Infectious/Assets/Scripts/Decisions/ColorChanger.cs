@@ -70,25 +70,27 @@ public class ColorChanger : MonoBehaviour {
             //timer = timer - updateTime;
 
         }
-        
-            //Das Object wird langsam eingefärbt
-            if (fadeTimer <= colorFadeLength) 
-            {
-                gradientColor = gradient.Evaluate(fadeTimer / colorFadeLength);
-                Debug.Log(gradientColor);
-                rend.material.color = gradientColor;
-                fadeTimer += Time.deltaTime;
-            }
-            if (fadeTimer > colorFadeLength) 
-            {
 
-                colorKey[0].color = gradientColor;
-                gradient.SetKeys(colorKey, alphaKey);
-                fadeTimer -= colorFadeLength;
-                oldColor = newColor;
-                timer -=colorFadeLength;
-            }
+        //Das Object wird langsam eingefärbt
 
+            if (0 < fadeTimer) 
+            {
+                if (fadeTimer <= colorFadeLength) {
+                    gradientColor = gradient.Evaluate(fadeTimer / colorFadeLength);
+                    Debug.Log(gradientColor);
+                    Debug.Log(fadeTimer / colorFadeLength);
+                    rend.material.color = gradientColor;
+                    fadeTimer += Time.deltaTime;
+                }
+                if (fadeTimer > colorFadeLength) {
+
+                    colorKey[0].color = colorKey[1].color;
+                    gradient.SetKeys(colorKey, alphaKey);
+                    fadeTimer = 0;
+                    oldColor = newColor;
+                    timer = 0;
+                }
+            }
         Debug.Log(colorProgress);
         
         timer += Time.deltaTime;
@@ -101,15 +103,15 @@ public class ColorChanger : MonoBehaviour {
         colorProgress = progressValue;
         colorKey[1].color = new Color(1.0f, 1.0f - colorProgress, 1.0f - colorProgress);
         
-        oldColor = gradientColor;
+        //oldColor = gradientColor;
 
         gradient.SetKeys(colorKey, alphaKey);
-
+        
 
     }
 
     public void ResetTimer() {
-        timer = 0;
+        fadeTimer += Time.deltaTime;
     }
 }
     

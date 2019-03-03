@@ -63,6 +63,7 @@ public class PointLog : MonoBehaviour
         //Der Wert wird um eine Einheit hinaufgesetzt und der Wachstumsbias aktiviert
         Wert01 += (1.0f / Steps);
         rising = true;
+        ColorChanger.colorChanger.ResetTimer();
 
     }
 
@@ -71,7 +72,7 @@ public class PointLog : MonoBehaviour
         //Der Wert wird um eine Einheit herabgesetzt und der Wachstumsbias deaktiviert
         Wert01 -= (1.0f / Steps);
         rising = false;
-
+        ColorChanger.colorChanger.ResetTimer();
     }
 
     
