@@ -12,47 +12,39 @@ public class SphereMapGenerator : MonoBehaviour {
 
     public GameObject testObject;
     public float distanceBetweenElements;
-    public float circlesAmount;
-    public float density;
+    public float latDensity;
+    public float longDensity;
 
     private float xPosition = 0;
     private float yPosition = 0;
     private float zPosition = 0;
 
-    private float temp;
-
     private void Start() {
+        longDensity = 1/longDensity;
         GenerateSphere();
     }
 
     private void GenerateSphere() {
 
         //The amount of circles
-        for (float i = 0; i < circlesAmount + 1; i++) {
+        for (float z = -latDensity/2; z < latDensity / 2 + 1; z++) {
             xPosition = 0;
             yPosition = 0;
-            float zCircleRadius = Mathf.Sin(Mathf.PI * i / circlesAmount);
-            float zDistance = Mathf.Sin(Mathf.PI * i / circlesAmount / 2);
-            zPosition += density;
+            float zCircleChoke = Mathf.Abs(z) != (latDensity / 2) ? Mathf.Sqrt(Mathf.Pow((latDensity / 2), 2) - Mathf.Pow(z, 2)) : 1;
             //Each circle
-            for (float k = 0; k < 2; k += density) {
+            for (float k = 0; k < 2; k += longDensity) {
                 Instantiate(testObject, new Vector3(
-                    Mathf.Sin(Mathf.PI * xPosition) * zCircleRadius * distanceBetweenElements,
-                    Mathf.Cos(Mathf.PI * yPosition) * zCircleRadius * distanceBetweenElements,
-                    i),
+                    Mathf.Sin(Mathf.PI * xPosition) * zCircleChoke * distanceBetweenElements,
+                    Mathf.Cos(Mathf.PI * yPosition) * zCircleChoke * distanceBetweenElements,
+                    z * distanceBetweenElements),
                     Quaternion.identity, gameObject.transform);
-                xPosition += density;
-                yPosition += density;
-
+                xPosition += longDensity;
+                yPosition += longDensity;
             }
+            zPosition += longDensity;
         }
 
 
-
-
-
-
-
         //MeshFilter filter = gameObject.AddComponent<MeshFilter>();
         //Mesh mesh = filter.mesh;
         //mesh.Clear();
@@ -149,26 +141,6 @@ public class SphereMapGenerator : MonoBehaviour {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //MeshFilter filter = gameObject.AddComponent<MeshFilter>();
         //Mesh mesh = filter.mesh;
         //mesh.Clear();
@@ -260,23 +232,5 @@ public class SphereMapGenerator : MonoBehaviour {
         //mesh.triangles = triangles;
 
         //mesh.RecalculateBounds();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
