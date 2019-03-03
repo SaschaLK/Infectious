@@ -10,15 +10,18 @@ public class DecisionEvent : MonoBehaviour
     private float timer;
 
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         LM = this.gameObject;  
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+
+
+        //Es wird in regelmäßigen Abständen ein UI-Dialog  mit einem Event aktiviert.
         if (UICanvas.activeSelf == false) 
         {
             if (timer > 5.0f) 
@@ -31,6 +34,8 @@ public class DecisionEvent : MonoBehaviour
         }
         
     }
+
+    //Das Event gibt zwei verschiedene Optionen zur Auswahl, die jeweils entweder den Wert(in PointLog) vergrößern oder verringern. Anschließend wird der Dialog wieder ausgeschaltet.
 
     public void Up() 
     {

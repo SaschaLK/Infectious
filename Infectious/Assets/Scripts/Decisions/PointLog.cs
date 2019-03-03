@@ -9,71 +9,69 @@ public class PointLog : MonoBehaviour
     public static PointLog pointLog;
 
 
-    private float Wert01 = 0.0f;
+    private float Wert01 = 0.0f;                //Interne Variable für den Gesamtwert
+    private System.DateTime gameDate;           //Interne Spieluhr
+    private float timer = 0.0f;                 //Timer für die Spieluhr
+    private bool rising = false;                //Variable zum ein- und ausschalten des Wachstumsbias
+
+    public float gameSpeedPerDay = 5.0f;        //Public Variable zur Manipulation der Spielgeschwindigkeit im Inspector
+    public int Steps;                           //Public Variable zum Bestimmen der Anzahl an benötigten Schritte zum einfärben eines Feldes im Inspector
+    public float bias = 0;                      //Public Variable zur Manipulation des Wachstumsbias im Inspector
+
     
-    public float baseTick = 1.1f;
-    public float tick = 5.0f;
-    private float timer = 0.0f;
-    private System.DateTime gameDate;
-    public int Steps;
-    private bool rising = false;
-    public float bias = 0;
 
-    GameObject LM;
-
-    public DateTime GameDate { get => gameDate; set => gameDate = value; }
-    public float Wert011 { get => Wert01; set => Wert01 = value; }
+    public DateTime GameDate { get => gameDate; set => gameDate = value; }          //Public Variable zum Abrufen des aktuellen Spieltags
+    public float Wert011 { get => Wert01; set => Wert01 = value; }                  //Public Variable zum Abrufen des Gesamtwerts
 
     private void Awake() {
         pointLog = this;
     }
+    
 
-    // Start is called before the first frame update
     void Start()
     {
-        
-        LM = this.gameObject;
-        
-        //tickrateNEW = baseTick;
-        
+       
+        // Der Starttag des Spiels wird auf den aktuellen Tag gesetzt.
         GameDate = System.DateTime.Today;
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //ColorChanger.colorChanger.ProgressUpdate(Wert01);
         
-        timer += Time.deltaTime;
-        if (timer > tick) 
-        {
-            
-            timer = timer - tick;
+        //In regelmäßigen Abständen wird die Spieluhr um einen Tag nach vorne gesetzt.
+        if (timer > gameSpeedPerDay) 
+        {    
+            timer = timer - gameSpeedPerDay;
             GameDate = GameDate.AddDays(1);
-            Debug.Log(Wert01);
-            
-        }
-        if (rising == true) {
-            Wert01 += bias;
+
+            //Bei aktiviertem Wachstumsbias steigt der Wert jeden Spieltag automatisch leicht an.
+            if (rising == true) {
+                Wert01 += bias;
+            }
+
         }
 
-       
+        
+
+        timer += Time.deltaTime;
+
     }
 
     public void AddValue() 
     {
-        
+        //Der Wert wird um eine Einheit hinaufgesetzt und der Wachstumsbias aktiviert
         Wert01 += (1.0f / Steps);
-        
         rising = true;
+
     }
 
     public void SubtractValue() 
     {
-        
+        //Der Wert wird um eine Einheit herabgesetzt und der Wachstumsbias deaktiviert
         Wert01 -= (1.0f / Steps);
         rising = false;
+
     }
 
     

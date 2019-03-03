@@ -9,16 +9,19 @@ public class GameClock : MonoBehaviour {
     public Text gameClock;
     
 
-    // Start is called before the first frame update
+    
     void Start() 
     {
+
         gameDay = this.GetComponent<PointLog>().GameDate;
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+
+        //Das aktuelle Datum im Spiel wird aus dem PointLog Script abgerufen und zur Ausgabe als Text im UI Formatiert.
         gameDay = this.GetComponent<PointLog>().GameDate;
         gameClock.text = string.Format("{0}.{1}.{2}", gameDay.Day, gameDay.Month, gameDay.Year);
     }

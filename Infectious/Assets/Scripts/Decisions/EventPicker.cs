@@ -6,10 +6,20 @@ using UnityEngine.UI;
 public class EventPicker : MonoBehaviour
 {
 
+    /*
+     * 
+     * AKTUELL GRÖßTENTEILS PLATZHALTER
+     * 
+     * 
+     * 
+    */
+
+
     ArrayList eventList = new ArrayList();
     private int i;
     public Text text;
-    // Start is called before the first frame update
+    
+    //Die Klasse füllt zu Beginn ein Array mit Events.
     void Start()
     {
         eventList.Add("Event1");
@@ -24,12 +34,13 @@ public class EventPicker : MonoBehaviour
         eventList.Add("Event10");
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
 
+    //Es wird ein zufälliges Event aus dem Array gewählt und UI als Text angezeigt.
     public void PickEvent() 
     {
         i = Random.Range(0, eventList.Count);

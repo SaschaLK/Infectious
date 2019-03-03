@@ -429,8 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8ff241118a8c44a42b0da82ae32f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseTick: 5
-  tick: 5
+  gameSpeedPerDay: 5
   Steps: 3
   bias: 0.0001
 --- !u!4 &246148898
@@ -979,11 +978,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fefabafe25fadb4798e315465011f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gradientColor: {r: 1, g: 1, b: 1, a: 1}
   mapSegment: {fileID: 0}
-  compressionRate: 50
+  gradientColor: {r: 1, g: 1, b: 1, a: 1}
   updateTime: 1
-  colorFadeTime: 5
+  colorFadeLength: 5
 --- !u!65 &1020716746
 BoxCollider:
   m_ObjectHideFlags: 0

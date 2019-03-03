@@ -6,30 +6,34 @@ public class ColorChanger : MonoBehaviour {
 
     public static ColorChanger colorChanger;
 
-    public Color gradientColor = Color.white;
     private float colorProgress;
-    Renderer rend;
-    public GameObject mapSegment;
-    public float compressionRate = 100f;
+    private Renderer rend;
     private float timer;
-    public float updateTime = 1.0f;
-    private float lerpTimer = 0.0f;
-    public float colorFadeTime = 2.0f;
+    private float fadeTimer = 0.0f;
     private Color newColor;
     private Color oldColor;
+    private Gradient gradient;
+    private GradientColorKey[] colorKey;
+    private GradientAlphaKey[] alphaKey;
 
-    Gradient gradient;
-    GradientColorKey[] colorKey;
-    GradientAlphaKey[] alphaKey;
+
+    public GameObject mapSegment;
+
+    public Color gradientColor = Color.white;
+    public float updateTime = 1.0f;
+    public float colorFadeLength = 2.0f;
+
+    
+    
+  
 
     private void Awake()
     {
         colorChanger = this;
 
-        
     }
     
-    // Start is called before the first frame update
+    
     void Start() 
     {
         rend = this.GetComponent<Renderer>();
@@ -55,48 +59,43 @@ public class ColorChanger : MonoBehaviour {
 
     }
 
-    // Update is called once per frame
+    
     void Update() 
     {
 
+        //Die Klasse ruft in regelmäßigen Abständen den aktuellen Wert von der PointLog Klasse ab und gibt sie an die ProgressUpdate Methode ab.
         if (timer > updateTime) {
-
 
             ProgressUpdate(PointLog.pointLog.Wert011);
             //timer = timer - updateTime;
 
         }
         
-
-            if (lerpTimer <= colorFadeTime) 
+            //Das Object wird langsam eingefärbt
+            if (fadeTimer <= colorFadeLength) 
             {
-                gradientColor = gradient.Evaluate(lerpTimer / colorFadeTime);
+                gradientColor = gradient.Evaluate(fadeTimer / colorFadeLength);
                 Debug.Log(gradientColor);
                 rend.material.color = gradientColor;
-                lerpTimer += Time.deltaTime;
+                fadeTimer += Time.deltaTime;
             }
-            if (lerpTimer > colorFadeTime) 
+            if (fadeTimer > colorFadeLength) 
             {
 
                 colorKey[0].color = gradientColor;
                 gradient.SetKeys(colorKey, alphaKey);
-                lerpTimer -= colorFadeTime;
+                fadeTimer -= colorFadeLength;
                 oldColor = newColor;
-                timer = 0.0f;
+                timer -=colorFadeLength;
             }
 
-        
-        
         Debug.Log(colorProgress);
         
-
         timer += Time.deltaTime;
-
-
-
-
+        
     }
 
+    //Die Methode stellt anhand des aktuellen Wertes die neue Farbe ein, in der da Objekt eingefärbt wird.
     public void ProgressUpdate(float progressValue) {
 
         colorProgress = progressValue;
