@@ -10,227 +10,84 @@ public class SphereMapGenerator : MonoBehaviour {
         instance = this;
     }
 
-    public GameObject testObject;
+    public GameObject tile;
     public float distanceBetweenElements;
     public float latDensity;
     public float longDensity;
+    private float longStep;
 
-    private float xPosition = 0;
-    private float yPosition = 0;
-    private float zPosition = 0;
+    private Dictionary<Vector2, GameObject> sphereTiles = new Dictionary<Vector2, GameObject>();
+
+    private Vector3 southCap;
 
     private void Start() {
-        longDensity = 1/longDensity;
-        GenerateSphere();
+        longStep = 1/longDensity;
+        southCap = new Vector3(0, 0, latDensity / 2 * distanceBetweenElements);
+
+        GenerateSphereTiles();
+        PassNeighbors();
     }
 
-    private void GenerateSphere() {
+    private void GenerateSphereTiles() {
+        //The amount of rings
+        for (float zPosition = -latDensity / 2; zPosition < latDensity / 2 + 1; zPosition++) {
+            float xPosition = 0;
+            float yPosition = 0;
 
-        //The amount of circles
-        for (float z = -latDensity/2; z < latDensity / 2 + 1; z++) {
-            xPosition = 0;
-            yPosition = 0;
-            float zCircleChoke = Mathf.Abs(z) != (latDensity / 2) ? Mathf.Sqrt(Mathf.Pow((latDensity / 2), 2) - Mathf.Pow(z, 2)) : 1;
-            //Each circle
-            for (float k = 0; k < 2; k += longDensity) {
-                Instantiate(testObject, new Vector3(
-                    Mathf.Sin(Mathf.PI * xPosition) * zCircleChoke * distanceBetweenElements,
-                    Mathf.Cos(Mathf.PI * yPosition) * zCircleChoke * distanceBetweenElements,
-                    z * distanceBetweenElements),
-                    Quaternion.identity, gameObject.transform);
-                xPosition += longDensity;
-                yPosition += longDensity;
+            float zCircleChoke = Mathf.Abs(zPosition) != latDensity / 2 ? Mathf.Sqrt(Mathf.Pow((latDensity / 2), 2) - Mathf.Pow(zPosition, 2)) : 1;
+
+            //Each ring
+            for (float degreeInPi = 0; degreeInPi < 2; degreeInPi += longStep) {
+                //Instantiate Tiles
+                float x = Mathf.Sin(Mathf.PI * xPosition) * zCircleChoke * distanceBetweenElements;
+                float y = Mathf.Cos(Mathf.PI * yPosition) * zCircleChoke * distanceBetweenElements;
+                float z = zPosition * distanceBetweenElements;
+
+                if(Mathf.Approximately(zPosition, -latDensity / 2)) {
+                    sphereTiles.Add(new Vector2(degreeInPi, zPosition), Instantiate(tile, new Vector3(x, y, z), Quaternion.identity, gameObject.transform));
+                    sphereTiles.Add(new Vector2(degreeInPi, zPosition - 1), Instantiate(tile, new Vector3(0, 0, z), Quaternion.identity, gameObject.transform));
+                }
+                else {
+                    sphereTiles.Add(new Vector2(degreeInPi, zPosition), Instantiate(tile, new Vector3(x, y, z), Quaternion.identity, gameObject.transform));
+                }
+                
+                //Move along ring
+                xPosition += longStep;
+                yPosition += longStep;
             }
-            zPosition += longDensity;
         }
+    }
 
-
-        //MeshFilter filter = gameObject.AddComponent<MeshFilter>();
-        //Mesh mesh = filter.mesh;
-        //mesh.Clear();
-
-        //float radius = 1f;
-        //// Longitude |||
-        //int nbLong = 24;
-        //// Latitude ---
-        //int nbLat = 16;
-
-        //#region Vertices
-        //Vector3[] vertices = new Vector3[(nbLong + 1) * nbLat + 2];
-        //float _pi = Mathf.PI;
-        //float _2pi = _pi * 2f;
-
-        //vertices[0] = Vector3.up * radius;
-        //for (int lat = 0; lat < nbLat; lat++) {
-        //    float a1 = _pi * (float)(lat + 1) / (nbLat + 1);
-        //    float sin1 = Mathf.Sin(a1);
-        //    float cos1 = Mathf.Cos(a1);
-
-        //    for (int lon = 0; lon <= nbLong; lon++) {
-        //        float a2 = _2pi * (float)(lon == nbLong ? 0 : lon) / nbLong;
-        //        float sin2 = Mathf.Sin(a2);
-        //        float cos2 = Mathf.Cos(a2);
-
-        //        vertices[lon + lat * (nbLong + 1) + 1] = new Vector3(sin1 * cos2, cos1, sin1 * sin2) * radius;
-        //    }
-        //}
-        //vertices[vertices.Length - 1] = Vector3.up * -radius;
-        //#endregion
-
-        //#region Normales		
-        //Vector3[] normales = new Vector3[vertices.Length];
-        //for (int n = 0; n < vertices.Length; n++)
-        //    normales[n] = vertices[n].normalized;
-        //#endregion
-
-        //#region UVs
-        //Vector2[] uvs = new Vector2[vertices.Length];
-        //uvs[0] = Vector2.up;
-        //uvs[uvs.Length - 1] = Vector2.zero;
-        //for (int lat = 0; lat < nbLat; lat++)
-        //    for (int lon = 0; lon <= nbLong; lon++)
-        //        uvs[lon + lat * (nbLong + 1) + 1] = new Vector2((float)lon / nbLong, 1f - (float)(lat + 1) / (nbLat + 1));
-        //#endregion
-
-        //#region Triangles
-        //int nbFaces = vertices.Length;
-        //int nbTriangles = nbFaces * 2;
-        //int nbIndexes = nbTriangles * 3;
-        //int[] triangles = new int[nbIndexes];
-
-        ////Top Cap
-        //int i = 0;
-        //for (int lon = 0; lon < nbLong; lon++) {
-        //    triangles[i++] = lon + 2;
-        //    triangles[i++] = lon + 1;
-        //    triangles[i++] = 0;
-        //}
-
-        ////Middle
-        //for (int lat = 0; lat < nbLat - 1; lat++) {
-        //    for (int lon = 0; lon < nbLong; lon++) {
-        //        int current = lon + lat * (nbLong + 1) + 1;
-        //        int next = current + nbLong + 1;
-
-        //        triangles[i++] = current;
-        //        triangles[i++] = current + 1;
-        //        triangles[i++] = next + 1;
-
-        //        triangles[i++] = current;
-        //        triangles[i++] = next + 1;
-        //        triangles[i++] = next;
-        //    }
-        //}
-
-        ////Bottom Cap
-        //for (int lon = 0; lon < nbLong; lon++) {
-        //    triangles[i++] = vertices.Length - 1;
-        //    triangles[i++] = vertices.Length - (lon + 2) - 1;
-        //    triangles[i++] = vertices.Length - (lon + 1) - 1;
-        //}
-        //#endregion
-
-        //mesh.vertices = vertices;
-        //mesh.normals = normales;
-        //mesh.uv = uvs;
-        //mesh.triangles = triangles;
-
-        //mesh.RecalculateBounds();
-
-
-
-
-
-        //MeshFilter filter = gameObject.AddComponent<MeshFilter>();
-        //Mesh mesh = filter.mesh;
-        //mesh.Clear();
-
-        //float radius = 1f;
-        //// Longitude |||
-        //int nbLong = 24;
-        //// Latitude ---
-        //int nbLat = 16;
-
-        //#region Vertices
-        //Vector3[] vertices = new Vector3[(nbLong + 1) * nbLat + 2];
-        //float _pi = Mathf.PI;
-        //float _2pi = _pi * 2f;
-
-        //vertices[0] = Vector3.up * radius;
-        //for (int lat = 0; lat < nbLat; lat++) {
-        //    float a1 = _pi * (float)(lat + 1) / (nbLat + 1);
-        //    float sin1 = Mathf.Sin(a1);
-        //    float cos1 = Mathf.Cos(a1);
-
-        //    for (int lon = 0; lon <= nbLong; lon++) {
-        //        float a2 = _2pi * (float)(lon == nbLong ? 0 : lon) / nbLong;
-        //        float sin2 = Mathf.Sin(a2);
-        //        float cos2 = Mathf.Cos(a2);
-
-        //        vertices[lon + lat * (nbLong + 1) + 1] = new Vector3(sin1 * cos2, cos1, sin1 * sin2) * radius;
-        //    }
-        //}
-        //vertices[vertices.Length - 1] = Vector3.up * -radius;
-        //#endregion
-
-        //#region Normales		
-        //Vector3[] normales = new Vector3[vertices.Length];
-        //for (int n = 0; n < vertices.Length; n++)
-        //    normales[n] = vertices[n].normalized;
-        //#endregion
-
-        //#region UVs
-        //Vector2[] uvs = new Vector2[vertices.Length];
-        //uvs[0] = Vector2.up;
-        //uvs[uvs.Length - 1] = Vector2.zero;
-        //for (int lat = 0; lat < nbLat; lat++)
-        //    for (int lon = 0; lon <= nbLong; lon++)
-        //        uvs[lon + lat * (nbLong + 1) + 1] = new Vector2((float)lon / nbLong, 1f - (float)(lat + 1) / (nbLat + 1));
-        //#endregion
-
-        //#region Triangles
-        //int nbFaces = vertices.Length;
-        //int nbTriangles = nbFaces * 2;
-        //int nbIndexes = nbTriangles * 3;
-        //int[] triangles = new int[nbIndexes];
-
-        ////Top Cap
-        //int i = 0;
-        //for (int lon = 0; lon < nbLong; lon++) {
-        //    triangles[i++] = lon + 2;
-        //    triangles[i++] = lon + 1;
-        //    triangles[i++] = 0;
-        //}
-
-        ////Middle
-        //for (int lat = 0; lat < nbLat - 1; lat++) {
-        //    for (int lon = 0; lon < nbLong; lon++) {
-        //        int current = lon + lat * (nbLong + 1) + 1;
-        //        int next = current + nbLong + 1;
-
-        //        triangles[i++] = current;
-        //        triangles[i++] = current + 1;
-        //        triangles[i++] = next + 1;
-
-        //        triangles[i++] = current;
-        //        triangles[i++] = next + 1;
-        //        triangles[i++] = next;
-        //    }
-        //}
-
-        ////Bottom Cap
-        //for (int lon = 0; lon < nbLong; lon++) {
-        //    triangles[i++] = vertices.Length - 1;
-        //    triangles[i++] = vertices.Length - (lon + 2) - 1;
-        //    triangles[i++] = vertices.Length - (lon + 1) - 1;
-        //}
-        //#endregion
-
-        //mesh.vertices = vertices;
-        //mesh.normals = normales;
-        //mesh.uv = uvs;
-        //mesh.triangles = triangles;
-
-        //mesh.RecalculateBounds();
+    private void PassNeighbors() {
+        foreach (KeyValuePair<Vector2, GameObject> tile in sphereTiles) {
+            //If south most position AND NOT east most position
+            if (Mathf.Approximately(tile.Key.y, latDensity / 2) && !Mathf.Approximately(tile.Key.x, 2f - longStep)) {
+                tile.Value.GetComponent<WorldTileBehaviour>().SetStretchPoints(
+                    sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y)].transform.position,
+                    southCap,
+                    southCap);
+            }
+            //If south most position AND east most position
+            else if ((Mathf.Approximately(tile.Key.y, latDensity / 2) && Mathf.Approximately(tile.Key.x, 2f - longStep))) {
+                tile.Value.GetComponent<WorldTileBehaviour>().SetStretchPoints(
+                    sphereTiles[new Vector2(0, tile.Key.y)].transform.position,
+                    southCap,
+                    southCap);
+            }
+            //If NOT south most position BUT east most position
+            else if (!Mathf.Approximately(tile.Key.y, latDensity / 2 ) && Mathf.Approximately(tile.Key.x, 2f - longStep)) {
+                tile.Value.GetComponent<WorldTileBehaviour>().SetStretchPoints(
+                    sphereTiles[new Vector2(0, tile.Key.y)].transform.position,
+                    sphereTiles[new Vector2(0, tile.Key.y + 1)].transform.position,
+                    sphereTiles[new Vector2(tile.Key.x, tile.Key.y + 1)].transform.position);
+            }
+            //If regular
+            else {
+                tile.Value.GetComponent<WorldTileBehaviour>().SetStretchPoints(
+                    sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y)].transform.position,
+                    sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y + 1)].transform.position,
+                    sphereTiles[new Vector2(tile.Key.x, tile.Key.y + 1)].transform.position);
+            }
+        }
     }
 }
