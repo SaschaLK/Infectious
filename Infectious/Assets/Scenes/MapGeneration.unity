@@ -143,9 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 2103761166400385809, guid: 29deea4a71645b348b85579c07d92c60, type: 3}
-  distanceBetweenElements: 5
-  latDensity: 15
-  longDensity: 15
+  distanceBetweenElements: 15
+  latDensity: 36
+  longDensity: 36
 --- !u!4 &240989932
 Transform:
   m_ObjectHideFlags: 0
