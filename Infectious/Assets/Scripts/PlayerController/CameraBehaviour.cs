@@ -9,6 +9,12 @@ public class CameraBehaviour : MonoBehaviour {
     public float cameraSpeed;
     private float distance;
 
+    private void Awake() {
+        if (world == null) {
+            Debug.Log("Camera requires world object to be linked");
+        }
+    }
+
     private void Start() {
         //Set Starting position
         float worldSize = world.GetComponent<SphereMapGenerator>().latDensity / 2 * world.GetComponent<SphereMapGenerator>().distanceBetweenElements;
