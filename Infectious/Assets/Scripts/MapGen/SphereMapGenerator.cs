@@ -26,6 +26,7 @@ public class SphereMapGenerator : MonoBehaviour {
 
         GenerateSphereTiles();
         PassNeighbors();
+        RotateWorld();
     }
 
     private void GenerateSphereTiles() {
@@ -89,5 +90,9 @@ public class SphereMapGenerator : MonoBehaviour {
                     sphereTiles[new Vector2(tile.Key.x, tile.Key.y + 1)].transform.position);
             }
         }
+    }
+
+    private void RotateWorld() {
+        gameObject.transform.Rotate(new Vector3(90, 0, 0));
     }
 }
