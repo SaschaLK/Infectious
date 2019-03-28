@@ -29,6 +29,11 @@ public class CameraBehaviour : MonoBehaviour {
             transform.position = camTurnAngleH * transform.position;
         }
         if (Input.GetButton("Vertical")) {
+            //Rotation around dynamic axis: 
+            //The higher the z value, the more rotation around the x axes
+            //The higher the x value, the more rotation around the z axes
+            //If z value = 0, rotate around x axes
+            //What about the poles? 
             Quaternion camTurnAngleV = Quaternion.AngleAxis(Input.GetAxis("Vertical") * cameraSpeed, Vector3.forward);
             transform.position = camTurnAngleV * transform.position;
         }
