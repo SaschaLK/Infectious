@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2103761166400385811}
   - component: {fileID: 2103761166400385810}
   - component: {fileID: 2103761166400385813}
+  - component: {fileID: 2484972979159064702}
   m_Layer: 0
   m_Name: WorldTile
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ed7c2df5dd08f4e4b8d8e5f03a4ec4fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,7 +91,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd89f554f6677143bb56d27c1c2f78c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testSphere: {fileID: 7720116398926773567, guid: 23833b767830c724e9cd79f4dc45053c,
-    type: 3}
-  neighbours: []
-  position: {x: 0, y: 0, z: 0}
+  glowStrength: 5
+--- !u!64 &2484972979159064702
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103761166400385809}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 0}

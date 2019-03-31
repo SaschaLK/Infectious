@@ -14,10 +14,9 @@ public class SphereMapGenerator : MonoBehaviour {
     public float distanceBetweenElements;
     public float latDensity;
     public float longDensity;
+
     private float longStep;
-
     private Dictionary<Vector2, GameObject> sphereTiles = new Dictionary<Vector2, GameObject>();
-
     private Vector3 southCap;
 
     private void Start() {

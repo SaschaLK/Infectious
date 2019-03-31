@@ -23,7 +23,6 @@ public class CameraBehaviour : MonoBehaviour {
     }
 
     private void Update() {
-
         if (Input.GetButton("Horizontal")) {
             Quaternion camTurnAngleH = Quaternion.AngleAxis(Input.GetAxis("Horizontal") * -cameraSpeed, Vector3.up);
             transform.position = camTurnAngleH * transform.position;

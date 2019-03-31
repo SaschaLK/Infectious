@@ -1,21 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MK.Glow;
 
 public class WorldTileBehaviour : MonoBehaviour {
 
+    [Range(0, 10)]
+    public float glowStrength;
+
     private MeshFilter filter;
     private Mesh mesh;
-
     private List<GameObject> neighbours = new List<GameObject>();
+    private Material mat;
 
     private void Awake() {
+        mat = GetComponent<Renderer>().material;
+
         filter = GetComponent<MeshFilter>();
         mesh = new Mesh();
         filter.mesh = mesh;
     }
 
+    #region SETUP TILE
     public void SetNeighbours(GameObject north, GameObject east, GameObject south, GameObject west) {
+        //TO DO: USE NEIGHBOURS TO SPREAD INFECTION
         neighbours.Add(north);
         neighbours.Add(east);
         neighbours.Add(south);
@@ -43,9 +51,28 @@ public class WorldTileBehaviour : MonoBehaviour {
             2, 0, 3
         };
 
+        Vector2[] uvs = new Vector2[corners.Length];
+        uvs[0] = new Vector2(0, 0);
+        uvs[1] = new Vector2(1, 0);
+        uvs[2] = new Vector2(1, 1);
+        uvs[3] = new Vector2(0, 1);
+
         mesh.Clear();
         mesh.vertices = corners;
+        mesh.uv = uvs;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+
+        //Set MeshCollider to generated Mesh
+        GetComponent<MeshCollider>().sharedMesh = mesh;
+    }
+    #endregion
+
+    private void OnMouseOver() {
+        mat.SetFloat("_MKGlowTexStrength", glowStrength);
+    }
+
+    private void OnMouseExit() {
+        mat.SetFloat("_MKGlowTexStrength", 0f);
     }
 }

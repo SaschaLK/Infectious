@@ -15,7 +15,8 @@ public class TileSelecter : MonoBehaviour {
     private void Update() {
         if (Input.GetButtonDown("Fire1")) {
             ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-            Debug.Log(Input.mousePosition);
+            Physics.Raycast(ray, out hit);
+            hit.transform.gameObject.SetActive(false);
         }
     }
 }
