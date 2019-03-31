@@ -7,7 +7,11 @@ public class WorldTileBehaviour : MonoBehaviour {
 
     [Range(0, 10)]
     public float glowStrength;
-
+    public float interval;
+    public float disappearanceAmplifier;
+    private float actualInterval;
+    private bool blinking;
+    private bool lightUp;
     private MeshFilter filter;
     private Mesh mesh;
     private List<GameObject> neighbours = new List<GameObject>();
@@ -68,11 +72,34 @@ public class WorldTileBehaviour : MonoBehaviour {
     }
     #endregion
 
-    private void OnMouseOver() {
-        mat.SetFloat("_MKGlowTexStrength", glowStrength);
+    private void OnMouseEnter() {
+        //mat.SetFloat("_MKGlowTexStrength", glowStrength);
+        blinking = true;
+        actualInterval = interval;
+        StartCoroutine(Blink());
     }
 
     private void OnMouseExit() {
-        mat.SetFloat("_MKGlowTexStrength", 0f);
+        //mat.SetFloat("_MKGlowTexStrength", 0f);
+        actualInterval = disappearanceAmplifier * interval;
+        blinking = false;
+    }
+
+    IEnumerator Blink() {
+        while (blinking || mat.GetFloat("_MKGlowTexStrength") > 0) {
+            if(mat.GetFloat("_MKGlowTexStrength") <= 0) {
+                lightUp = true;
+            }
+            else if(mat.GetFloat("_MKGlowTexStrength") >= glowStrength) {
+                lightUp = false;
+            }
+            if(lightUp) {
+                mat.SetFloat("_MKGlowTexStrength", mat.GetFloat("_MKGlowTexStrength") + actualInterval);
+            }
+            else{
+                mat.SetFloat("_MKGlowTexStrength", mat.GetFloat("_MKGlowTexStrength") - actualInterval);
+            }
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

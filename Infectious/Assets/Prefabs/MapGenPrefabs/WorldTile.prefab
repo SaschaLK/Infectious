@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glowStrength: 5
+  interval: 0.1
+  disappearanceAmplifier: 3
 --- !u!64 &2484972979159064702
 MeshCollider:
   m_ObjectHideFlags: 0
