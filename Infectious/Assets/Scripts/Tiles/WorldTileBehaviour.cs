@@ -67,7 +67,7 @@ public class WorldTileBehaviour : MonoBehaviour {
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        //Set MeshCollider to generated Mesh
+        //Set MeshCollider Size to generated Mesh
         GetComponent<MeshCollider>().sharedMesh = mesh;
     }
     #endregion
@@ -102,4 +102,12 @@ public class WorldTileBehaviour : MonoBehaviour {
         }
     }
     #endregion
+
+    public void InfestNeighbours() {
+        Debug.Log(neighbours.Count);
+        foreach(GameObject neighbour in neighbours) {
+            Debug.Log("Set");
+            if(neighbour != null) neighbour.GetComponent<Allegiance>().Transition();
+        }
+    }
 }

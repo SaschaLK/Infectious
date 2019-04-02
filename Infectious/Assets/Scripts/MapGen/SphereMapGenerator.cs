@@ -66,6 +66,11 @@ public class SphereMapGenerator : MonoBehaviour {
                     sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y)].transform.position,
                     southCap,
                     southCap);
+                //tile.Value.GetComponent<WorldTileBehaviour>().SetNeighbours(
+                //    sphereTiles[new Vector2(tile.Key.x, tile.Key.y - 1)],
+                //    sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y)],
+                //    null,
+                //    sphereTiles[new Vector2(tile.Key.x - longStep, tile.Key.y)]);
             }
             //If south most position AND east most position
             else if ((Mathf.Approximately(tile.Key.y, latDensity / 2) && Mathf.Approximately(tile.Key.x, 2f - longStep))) {
@@ -73,6 +78,11 @@ public class SphereMapGenerator : MonoBehaviour {
                     sphereTiles[new Vector2(0, tile.Key.y)].transform.position,
                     southCap,
                     southCap);
+                tile.Value.GetComponent<WorldTileBehaviour>().SetNeighbours(
+                    sphereTiles[new Vector2(tile.Key.x, tile.Key.y - 1)],
+                    sphereTiles[new Vector2(0, tile.Key.y)],
+                    null,
+                    sphereTiles[new Vector2(tile.Key.x - longStep, tile.Key.y)]);
             }
             //If NOT south most position BUT east most position
             else if (!Mathf.Approximately(tile.Key.y, latDensity / 2 ) && Mathf.Approximately(tile.Key.x, 2f - longStep)) {
@@ -80,6 +90,11 @@ public class SphereMapGenerator : MonoBehaviour {
                     sphereTiles[new Vector2(0, tile.Key.y)].transform.position,
                     sphereTiles[new Vector2(0, tile.Key.y + 1)].transform.position,
                     sphereTiles[new Vector2(tile.Key.x, tile.Key.y + 1)].transform.position);
+                //tile.Value.GetComponent<WorldTileBehaviour>().SetNeighbours(
+                //    sphereTiles[new Vector2(tile.Key.x, tile.Key.y - 1)],
+                //    sphereTiles[new Vector2(0, tile.Key.y)],
+                //    sphereTiles[new Vector2(tile.Key.x, tile.Key.y + 1)],
+                //    sphereTiles[new Vector2(tile.Key.x - longStep, tile.Key.y)]);
             }
             //If regular
             else {
@@ -87,6 +102,11 @@ public class SphereMapGenerator : MonoBehaviour {
                     sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y)].transform.position,
                     sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y + 1)].transform.position,
                     sphereTiles[new Vector2(tile.Key.x, tile.Key.y + 1)].transform.position);
+                //tile.Value.GetComponent<WorldTileBehaviour>().SetNeighbours(
+                //    sphereTiles[new Vector2(tile.Key.x, tile.Key.y - 1)],
+                //    sphereTiles[new Vector2(tile.Key.x + longStep, tile.Key.y)],
+                //    sphereTiles[new Vector2(tile.Key.x, tile.Key.y + 1)],
+                //    sphereTiles[new Vector2(tile.Key.x - longStep, tile.Key.y)]);
             }
         }
     }

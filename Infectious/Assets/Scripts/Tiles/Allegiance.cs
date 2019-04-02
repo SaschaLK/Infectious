@@ -23,10 +23,11 @@ public class Allegiance : MonoBehaviour {
         StartCoroutine(Transition());
     }
 
-    IEnumerator Transition() {
+    public IEnumerator Transition() {
         while((int)(mat.color.r * 100) != (int)(playerPartyColor.r * 100) || (int)(mat.color.g * 100) != (int)(playerPartyColor.g * 100) || (int)(mat.color.b * 100) != (int)(playerPartyColor.b * 100)) {
             mat.color = Color.Lerp(mat.color, playerPartyColor, transitionTime);
             yield return new WaitForFixedUpdate();
         }
+        GetComponent<WorldTileBehaviour>().InfestNeighbours();
     }
 }
