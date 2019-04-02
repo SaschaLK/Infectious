@@ -265,6 +265,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6195217946960774187, guid: 86a80465c77023842b2cc7456b2c29f1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195217946960774187, guid: 86a80465c77023842b2cc7456b2c29f1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.76108193
+      objectReference: {fileID: 0}
+    - target: {fileID: 6195217946960774187, guid: 86a80465c77023842b2cc7456b2c29f1,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.50863296
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86a80465c77023842b2cc7456b2c29f1, type: 3}
 --- !u!1001 &1466634498
@@ -338,10 +353,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1288842565}
-    - target: {fileID: 1406423600, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeCameraSpeed
-      objectReference: {fileID: 0}
     - target: {fileID: 997806233, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -366,10 +377,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1288842565}
-    - target: {fileID: 642747988, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeScrollSensitivity
-      objectReference: {fileID: 0}
     - target: {fileID: 191062542, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -389,6 +396,26 @@ PrefabInstance:
     - target: {fileID: 1285773175, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
+        type: 3}
+      propertyPath: playerPartyColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
+        type: 3}
+      propertyPath: playerPartyColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
+        type: 3}
+      propertyPath: playerPartyColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
+        type: 3}
+      propertyPath: transitionTime
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
@@ -467,33 +494,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df9bd83af484e434b9a08bf8acc41fd7, type: 3}
---- !u!1 &2077252855
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2077252856}
-  m_Layer: 0
-  m_Name: EventManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2077252856
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077252855}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 255.5, y: 354.235, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

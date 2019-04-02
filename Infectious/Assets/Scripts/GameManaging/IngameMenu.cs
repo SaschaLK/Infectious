@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerBehaviour : MonoBehaviour {
+public class IngameMenu : MonoBehaviour {
 
-    public static GameManagerBehaviour instance;
+    public static IngameMenu instance;
     public GameObject quickMenu;
 
     private void Start() {

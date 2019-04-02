@@ -72,15 +72,14 @@ public class WorldTileBehaviour : MonoBehaviour {
     }
     #endregion
 
+    #region HOVER AND BLINKING
     private void OnMouseEnter() {
-        //mat.SetFloat("_MKGlowTexStrength", glowStrength);
         blinking = true;
         actualInterval = interval;
         StartCoroutine(Blink());
     }
 
     private void OnMouseExit() {
-        //mat.SetFloat("_MKGlowTexStrength", 0f);
         actualInterval = disappearanceAmplifier * interval;
         blinking = false;
     }
@@ -102,4 +101,5 @@ public class WorldTileBehaviour : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
     }
+    #endregion
 }
