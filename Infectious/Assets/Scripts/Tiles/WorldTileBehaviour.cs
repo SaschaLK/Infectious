@@ -27,7 +27,6 @@ public class WorldTileBehaviour : MonoBehaviour {
 
     #region SETUP TILE
     public void SetNeighbours(GameObject north, GameObject east, GameObject south, GameObject west) {
-        //TO DO: USE NEIGHBOURS TO SPREAD INFECTION
         neighbours.Add(north);
         neighbours.Add(east);
         neighbours.Add(south);
@@ -104,10 +103,10 @@ public class WorldTileBehaviour : MonoBehaviour {
     #endregion
 
     public void InfestNeighbours() {
-        Debug.Log(neighbours.Count);
         foreach(GameObject neighbour in neighbours) {
-            Debug.Log("Set");
-            if(neighbour != null) neighbour.GetComponent<Allegiance>().Transition();
+            if (neighbour != null) {
+                neighbour.GetComponent<Allegiance>().StartTransition();
+            }
         }
     }
 }
