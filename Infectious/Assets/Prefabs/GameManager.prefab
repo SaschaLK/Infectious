@@ -1279,6 +1279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907b35406cf8db0459e10b0479de13ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionTime: 1.5
+  playerPartyColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &212175904848884785
 GameObject:
   m_ObjectHideFlags: 0

@@ -265,21 +265,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6195217946960774187, guid: 86a80465c77023842b2cc7456b2c29f1,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.8490566
-      objectReference: {fileID: 0}
-    - target: {fileID: 6195217946960774187, guid: 86a80465c77023842b2cc7456b2c29f1,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.76108193
-      objectReference: {fileID: 0}
-    - target: {fileID: 6195217946960774187, guid: 86a80465c77023842b2cc7456b2c29f1,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.50863296
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86a80465c77023842b2cc7456b2c29f1, type: 3}
 --- !u!1001 &1466634498
@@ -396,26 +381,6 @@ PrefabInstance:
     - target: {fileID: 1285773175, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
-        type: 3}
-      propertyPath: playerPartyColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
-        type: 3}
-      propertyPath: playerPartyColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
-        type: 3}
-      propertyPath: playerPartyColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2506199187828843840, guid: f6466e970b7799442ab1638998ad4e68,
-        type: 3}
-      propertyPath: transitionTime
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6466e970b7799442ab1638998ad4e68, type: 3}

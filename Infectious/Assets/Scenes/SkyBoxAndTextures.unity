@@ -184,11 +184,6 @@ PrefabInstance:
       propertyPath: world
       value: 
       objectReference: {fileID: 1346143084}
-    - target: {fileID: 6407678989274739518, guid: 71a4fd3cf2348f346a5d990bf8e99ee0,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71a4fd3cf2348f346a5d990bf8e99ee0, type: 3}
 --- !u!1001 &458317738
