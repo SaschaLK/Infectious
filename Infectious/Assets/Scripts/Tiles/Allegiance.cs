@@ -32,27 +32,23 @@ public class Allegiance : MonoBehaviour {
     }
 
     public void StartTransition() {
-        this.transitioning = true;
-        //StartCoroutine(Transition());
+        //Option to enable multiple coroutine and therefore set a faster transitioning rate.
+        if(!transitioning && !hasTransitioned) {
+            StartCoroutine(Transition());
+        }
     }
 
     private IEnumerator Transition() {
-        Debug.Log("Transition!");
-        while((int)(mat.color.r * 100) != (int)(playerPartyColor.r * 100) || (int)(mat.color.g * 100) != (int)(playerPartyColor.g * 100) || (int)(mat.color.b * 100) != (int)(playerPartyColor.b * 100)) {
-            mat.color = Color.Lerp(mat.color, playerPartyColor, transitionTime);
-            yield return new WaitForFixedUpdate();
-        }
-        GetComponent<WorldTileBehaviour>().InfestNeighbours();
-    }
-
-    private void Update() {
-        if (transitioning && !hasTransitioned) {
+        transitioning = true;
+        while (!hasTransitioned) {
             mat.color = Color.Lerp(mat.color, playerPartyColor, transitionTime);
             if (Mathf.FloorToInt(mat.color.r * multiFactor) == playerPartyColorR && Mathf.FloorToInt(mat.color.g * multiFactor) == playerPartyColorG && Mathf.FloorToInt(mat.color.b * multiFactor) == playerPartyColorB) {
-                transitioning = false;
                 hasTransitioned = true;
+                transitioning = false;
                 GetComponent<WorldTileBehaviour>().InfestNeighbours();
+                StopAllCoroutines();
             }
+            yield return new WaitForFixedUpdate();
         }
     }
 }
