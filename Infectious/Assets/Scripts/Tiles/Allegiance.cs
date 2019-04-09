@@ -28,12 +28,15 @@ public class Allegiance : MonoBehaviour {
     }
 
     private void OnMouseDown() {
-        StartTransition();
+        if(AllegianceManager.instance.setLocationCharges > 0) {
+            StartTransition();
+        }
     }
 
     public void StartTransition() {
         //Option to enable multiple coroutine and therefore set a faster transitioning rate.
         if(!transitioning && !hasTransitioned) {
+            AllegianceManager.instance.setLocationCharges--;
             StartCoroutine(Transition());
         }
     }

@@ -8,6 +8,7 @@ public class AllegianceManager : MonoBehaviour {
 
     public float transitionTime;
     public Color playerPartyColor;
+    public int setLocationCharges = 1;
 
     private void Awake() {
         instance = this;
