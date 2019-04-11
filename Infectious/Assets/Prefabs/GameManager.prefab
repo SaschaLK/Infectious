@@ -1231,6 +1231,8 @@ GameObject:
   - component: {fileID: 212175904760487518}
   - component: {fileID: 1200813486263837607}
   - component: {fileID: 2506199187828843840}
+  - component: {fileID: 1392434668}
+  - component: {fileID: 7299471768009956999}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1279,8 +1281,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907b35406cf8db0459e10b0479de13ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionTime: 1.5
+  transitionTime: 10
   playerPartyColor: {r: 1, g: 0, b: 0, a: 0}
+  setLocationCharges: 1
+--- !u!114 &1392434668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212175904760487512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a044c9672eac3294a84a5ee341dd8c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  situations:
+  - {fileID: 11400000, guid: 3c344dd6577f44d44a968fb2c2d95d74, type: 2}
+--- !u!114 &7299471768009956999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212175904760487512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6da40941f5444644b7b559335efc418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followers: 0
+  antiScienceScore: 0
+  averageIQ: 0
 --- !u!1 &212175904848884785
 GameObject:
   m_ObjectHideFlags: 0
