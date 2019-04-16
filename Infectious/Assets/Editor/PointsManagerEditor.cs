@@ -8,11 +8,13 @@ public class PointsManagerEditor : Editor{
     public override void OnInspectorGUI() {
         PointsManager pointsManager = (PointsManager)target;
 
+        //Column labels
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Name");
+        EditorGUILayout.LabelField("Type Name");
         EditorGUILayout.LabelField("Value");
         EditorGUILayout.EndHorizontal();
 
+        //List for point-types
         for(int i = 0; i < pointsManager.pointTypes.Count; i++) {
             EditorGUILayout.BeginHorizontal();
             pointsManager.pointTypes[i].name = EditorGUILayout.TextField(pointsManager.pointTypes[i].name);
@@ -24,6 +26,7 @@ public class PointsManagerEditor : Editor{
             EditorGUILayout.EndHorizontal();
         }
 
+        //List management. Add new point-types to list or delete list.
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("New Type")) {
             pointsManager.pointTypes.Add(new PointsManager.PointType());
@@ -32,5 +35,10 @@ public class PointsManagerEditor : Editor{
             pointsManager.pointTypes.Clear();
         }
         EditorGUILayout.EndHorizontal();
+
+        //When inspectorvalues have been changed, set object to dirty to allow values to be moved into play mode.
+        if (GUI.changed) {
+            EditorUtility.SetDirty(pointsManager);
+        }
     }
 }

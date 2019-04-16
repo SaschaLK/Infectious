@@ -1,35 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [CreateAssetMenu(fileName = "New Situation", menuName = "Situation", order = 1)]
 public class Situation : ScriptableObject{
+    //Foreach type of pointsvalue add that type to each decision of the situation
+    private void OnEnable() {
+        for(int i = 0; i < decisions.Count; i++) {
+            for(int k = 0; k < GameObject.FindObjectOfType<PointsManager>().pointTypes.Count; k++) {
+                decisions[i].values.Add(0);
+            }
+        }
+    }
 
-    [TextArea]
-    public string situationText;
-
+    //The parameters and variables for a decision
     [System.Serializable]
     public class Decision {
         public string decisionName;
-        //[ExecuteAlways]
         public List<int> values;
     }
+    [TextArea]
+    public string situationText;
+
+    //List containing all decisions for that specific situation
     public List<Decision> decisions;
-
-    private void Awake() {
-        foreach(int value in decisions[0].values){
-
-
-
-            //hallo
-            //decision.values.Add(1);
-            //decision.values[0].
-            //decision.values.Add(10);
-            //decision.values.Add(100);
-
-
-
-        }
-    }
 }
