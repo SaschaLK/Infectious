@@ -1296,8 +1296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a044c9672eac3294a84a5ee341dd8c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  situations:
-  - {fileID: 11400000, guid: 3c344dd6577f44d44a968fb2c2d95d74, type: 2}
+  situations: []
 --- !u!114 &7299471768009956999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1310,9 +1309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da40941f5444644b7b559335efc418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followers: 0
-  antiScienceScore: 0
-  averageIQ: 0
+  pointTypes:
+  - name: alpha
+    value: 0
+  - name: beta
+    value: 0
+  - name: gamma
+    value: 0
 --- !u!1 &212175904848884785
 GameObject:
   m_ObjectHideFlags: 0
