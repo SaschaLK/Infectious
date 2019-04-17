@@ -10,8 +10,8 @@ public class PointsManagerEditor : Editor{
 
         //Column labels
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Type Name");
-        EditorGUILayout.LabelField("Value");
+        GUILayout.Label("Type Name");
+        GUILayout.Label("Value");
         EditorGUILayout.EndHorizontal();
 
         //List for point-types

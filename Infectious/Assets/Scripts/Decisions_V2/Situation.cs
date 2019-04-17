@@ -11,16 +11,20 @@ public class Situation : ScriptableObject{
                 decisions[i].values.Add(0);
             }
         }
+        for(int i = 0; i < GameObject.FindObjectOfType<PointsManager>().pointTypes.Count; i++) {
+            minPointValues.Add(0);
+        }
     }
 
     //The parameters and variables for a decision
+    public List<int> minPointValues;
+    [TextArea]
+    public string situationText;
     [System.Serializable]
     public class Decision {
         public string decisionName;
         public List<int> values;
     }
-    [TextArea]
-    public string situationText;
 
     //List containing all decisions for that specific situation
     public List<Decision> decisions;

@@ -15,6 +15,18 @@ public class SituationEditor : Editor{
     public override void OnInspectorGUI() {
         Situation situation = (Situation)target;
 
+        //Minimum point values for situation to occur
+        EditorGUILayout.LabelField("Minimum Point Values");
+        EditorGUI.indentLevel++;
+        for (int i = 0; i < pointTypes.Count; i++) {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField(pointTypes[i].name);
+            situation.minPointValues[i] = EditorGUILayout.IntField(situation.minPointValues[i]);
+            EditorGUILayout.EndHorizontal();
+        }
+        EditorGUI.indentLevel--;
+        EditorGUILayout.Space();
+
         //Description and flavor text of the situation
         EditorGUILayout.LabelField("Situation Flavor Text");
         situation.situationText = EditorGUILayout.TextArea(situation.situationText);
@@ -38,7 +50,7 @@ public class SituationEditor : Editor{
             EditorGUI.indentLevel++;
             for(int k = 0; k < pointTypes.Count; k++) {
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(pointTypes[k].name);
+                EditorGUILayout.LabelField(pointTypes[k].name + " impact");
                 situation.decisions[i].values[k] = EditorGUILayout.IntField(situation.decisions[i].values[k]);
                 EditorGUILayout.EndHorizontal();
             }
