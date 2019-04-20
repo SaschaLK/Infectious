@@ -1296,7 +1296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a044c9672eac3294a84a5ee341dd8c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  situations: []
+  timeDelay: 5
+  minTimeDelay: 1
+  maxTimeDelay: 10
+  situations:
+  - {fileID: 11400000, guid: 9318821c68a95884aa9527d6c1bcff83, type: 2}
+  - {fileID: 11400000, guid: 65593820350553943829f36d3a567235, type: 2}
+  - {fileID: 11400000, guid: cdd1c0783099c304cbe20171fc1f9845, type: 2}
 --- !u!114 &7299471768009956999
 MonoBehaviour:
   m_ObjectHideFlags: 0

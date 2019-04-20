@@ -15,6 +15,15 @@ public class SituationEditor : Editor{
     public override void OnInspectorGUI() {
         Situation situation = (Situation)target;
 
+        //Setup for Situation -> Instantiating and filling Lists
+        if (situation.minPointValues == null) {
+            situation.decisions = new List<Situation.Decision>();
+            situation.minPointValues = new List<int>();
+            for (int i = 0; i < GameObject.FindObjectOfType<PointsManager>().pointTypes.Count; i++) {
+                situation.minPointValues.Add(0);
+            }
+        }
+
         //Minimum point values for situation to occur
         EditorGUILayout.LabelField("Minimum Point Values");
         EditorGUI.indentLevel++;
@@ -63,6 +72,10 @@ public class SituationEditor : Editor{
         EditorGUILayout.BeginHorizontal();
         if(GUILayout.Button("New Decision")) {
             situation.decisions.Add(new Situation.Decision());
+            situation.decisions[situation.decisions.Count - 1].values = new List<int>();
+            for(int i = 0; i < pointTypes.Count; i++) {
+                situation.decisions[situation.decisions.Count - 1].values.Add(0);
+            }
         }
         else if(GUILayout.Button("Delete List")) {
             situation.decisions.Clear();
