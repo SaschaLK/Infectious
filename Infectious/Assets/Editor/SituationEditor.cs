@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(Situation))]
-public class SituationEditor : Editor{
+public class SituationEditor : Editor {
     private List<PointsManager.PointType> pointTypes;
 
     //Finding the PointsManager for future Reference, such as knowing how many types of points exist.

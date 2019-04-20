@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class SituationManager : MonoBehaviour {
 
@@ -9,6 +10,8 @@ public class SituationManager : MonoBehaviour {
     public float timeDelay;
     public float minTimeDelay;
     public float maxTimeDelay;
+    // = EditorUtility.OpenFolderPanel("Open Folder", "", "")
+    public string situationsPath;
     public List<Situation> situations = new List<Situation>();
 
     private PointsManager pointsManager;
@@ -20,6 +23,8 @@ public class SituationManager : MonoBehaviour {
     }
 
     private void Start() {
+        LoadAllSituationsFromFolder();
+
         //TODO cast list of all situation and min point values
     }
 
@@ -31,6 +36,21 @@ public class SituationManager : MonoBehaviour {
             //Debug.Log(Time.time);
             SituationEvent();
         }
+    }
+
+    private void LoadAllSituationsFromFolder() {
+        //TODO: Loading Situation from Folder and selecting folder in Editor
+
+
+
+
+        //Object[] temp = Resources.LoadAll(situationsPath);
+        //foreach(Object o in temp) {
+        //    Debug.Log("tem");
+        //}
+        //foreach(Resources sit in Resources.LoadAll<ScriptableObject>(situationsPath)) {
+        //    Debug.Log("hello");
+        //}
     }
 
     private void SituationEvent() {
