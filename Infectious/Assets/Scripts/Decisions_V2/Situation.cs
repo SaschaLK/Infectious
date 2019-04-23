@@ -12,6 +12,7 @@ public class Situation : ScriptableObject{
     public class Decision {
         public string decisionName;
         public List<int> values;
+        public List<float> tendencies;
     }
 
     //List containing all decisions for that specific situation

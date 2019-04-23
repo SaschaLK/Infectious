@@ -59,8 +59,8 @@ public class SituationEditor : Editor {
             EditorGUI.indentLevel++;
             for(int k = 0; k < pointTypes.Count; k++) {
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField(pointTypes[k].name + " impact");
-                situation.decisions[i].values[k] = EditorGUILayout.IntField(situation.decisions[i].values[k]);
+                situation.decisions[i].values[k] = EditorGUILayout.IntField(pointTypes[k].name + " Flat", situation.decisions[i].values[k]);
+                situation.decisions[i].tendencies[k] = EditorGUILayout.Slider("Tendency", situation.decisions[i].tendencies[k], -1, 1);
                 EditorGUILayout.EndHorizontal();
             }
             EditorGUI.indentLevel--;
@@ -73,8 +73,10 @@ public class SituationEditor : Editor {
         if(GUILayout.Button("New Decision")) {
             situation.decisions.Add(new Situation.Decision());
             situation.decisions[situation.decisions.Count - 1].values = new List<int>();
+            situation.decisions[situation.decisions.Count - 1].tendencies = new List<float>();
             for(int i = 0; i < pointTypes.Count; i++) {
                 situation.decisions[situation.decisions.Count - 1].values.Add(0);
+                situation.decisions[situation.decisions.Count - 1].tendencies.Add(0);
             }
         }
         else if(GUILayout.Button("Delete List")) {

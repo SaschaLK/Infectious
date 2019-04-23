@@ -9,7 +9,7 @@ public class PointsManagerEditor : Editor{
         PointsManager pointsManager = (PointsManager)target;
 
         //Time delay between updating the points
-        pointsManager.updateTime = EditorGUILayout.FloatField("Update Interval Time", pointsManager.updateTime);
+        pointsManager.updateTime = EditorGUILayout.FloatField("Update Interval Time (seconds)", pointsManager.updateTime);
         EditorGUILayout.Space();
 
         //Column labels
