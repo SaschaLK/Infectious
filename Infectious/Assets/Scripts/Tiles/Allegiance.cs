@@ -5,19 +5,28 @@ using MK.Glow;
 
 public class Allegiance : MonoBehaviour {
 
-    private Material mat;
+    #region Setup
+    //Basic Manager informations
     private float transitionTime;
+    
+    //Manipulatable attributes
+    private Material mat;
     private Color baseColor;
     private Color playerPartyColor;
     private int playerPartyColorR;
     private int playerPartyColorG;
     private int playerPartyColorB;
     private int multiFactor = 100;
+
+    //States and required Information for calculations
     private bool transitioning;
     private bool hasTransitioned;
 
     private void Start() {
-        //Setup for local information
+        FetchManagerInformation();
+    }
+
+    private void FetchManagerInformation() {
         mat = GetComponent<Renderer>().material;
         baseColor = mat.color;
         transitionTime = 1 / (AllegianceManager.instance.transitionTime * 10);
@@ -26,7 +35,9 @@ public class Allegiance : MonoBehaviour {
         playerPartyColorG = Mathf.FloorToInt(playerPartyColor.g * multiFactor);
         playerPartyColorB = Mathf.FloorToInt(playerPartyColor.b * multiFactor);
     }
+    #endregion
 
+    #region Allegiance and ColorChange logic
     private void OnMouseDown() {
         if(AllegianceManager.instance.setLocationCharges > 0) {
             StartTransition();
@@ -54,4 +65,5 @@ public class Allegiance : MonoBehaviour {
             yield return new WaitForFixedUpdate();
         }
     }
+    #endregion
 }
