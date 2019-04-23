@@ -8,6 +8,10 @@ public class PointsManagerEditor : Editor{
     public override void OnInspectorGUI() {
         PointsManager pointsManager = (PointsManager)target;
 
+        //Time delay between updating the points
+        pointsManager.updateTime = EditorGUILayout.FloatField("Update Interval Time", pointsManager.updateTime);
+        EditorGUILayout.Space();
+
         //Column labels
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Type Name");
@@ -21,6 +25,7 @@ public class PointsManagerEditor : Editor{
             pointsManager.pointTypes[i].name = EditorGUILayout.TextField(pointsManager.pointTypes[i].name);
             pointsManager.pointTypes[i].score = EditorGUILayout.IntField(pointsManager.pointTypes[i].score);
             pointsManager.pointTypes[i].tendency = EditorGUILayout.Slider(pointsManager.pointTypes[i].tendency, -1, 1);
+            //Maybe implement MinMaxSlider for random ranges?
 
             if (GUILayout.Button("Delete")) {
                 pointsManager.pointTypes.Remove(pointsManager.pointTypes[i]);

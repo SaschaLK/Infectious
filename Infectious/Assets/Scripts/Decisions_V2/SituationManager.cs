@@ -73,7 +73,7 @@ public class SituationManager : MonoBehaviour {
                 availableSituations.Add(situations[i]);
             }
         }
-        Debug.Log(availableSituations.Count);
+        //Debug.Log(availableSituations.Count);
 
         if(availableSituations.Count == 0) {
             return null;
