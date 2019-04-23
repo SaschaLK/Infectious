@@ -338,50 +338,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1288842565}
-    - target: {fileID: 997806233, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 997806233, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1569507744, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1569507744, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1569507744, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 642747988, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1288842565}
-    - target: {fileID: 191062542, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 191062542, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1285773175, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1285773175, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1285773175, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6466e970b7799442ab1638998ad4e68, type: 3}
 --- !u!1 &1624427277 stripped
