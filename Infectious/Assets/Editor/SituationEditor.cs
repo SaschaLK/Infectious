@@ -25,7 +25,7 @@ public class SituationEditor : Editor {
         }
 
         //Minimum point values for situation to occur
-        EditorGUILayout.LabelField("Minimum Point Values");
+        EditorGUILayout.LabelField("Required Point Values");
         EditorGUI.indentLevel++;
         for (int i = 0; i < pointTypes.Count; i++) {
             EditorGUILayout.BeginHorizontal();
