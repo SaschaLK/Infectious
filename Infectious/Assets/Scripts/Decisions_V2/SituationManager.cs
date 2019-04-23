@@ -18,78 +18,30 @@ public class SituationManager : MonoBehaviour {
     public float timeDelay;
     public float minTimeDelay;
     public float maxTimeDelay;
-    public string situationsPath;
-    public List<Situation> situations = new List<Situation>();
+    private List<Situation> situations = new List<Situation>();
     private Situation currentSituation;
-    // = EditorUtility.OpenFolderPanel("Open Folder", "", "")
     #endregion
 
     private PointsManager pointsManager;
 
     private void Awake() {
         instance = this;
-
-        pointsManager = GetComponent<PointsManager>();
     }
 
     private void Start() {
-        //LoadAllSituationsFromFolder();
-        //TODO cast list of all situation and min point values
+        //TODO cast list of all situation and min point values -> currentlyAvailableSituations
+        pointsManager = GetComponent<PointsManager>();
+        LoadSituations();
         DisableAllUIElements();
         StartCoroutine(SituationTimer());
     }
-    #endregion
-    #region Legacy and trying to load Situation from folder at start.
-    //private void Update() {
-    //    timeDelay -= Time.deltaTime;
-    //    if(timeDelay <= 0) {
-    //        timeDelay = Random.Range(minTimeDelay, maxTimeDelay);
-    //        //Debug.Log("Next in: " + timeDelay);
-    //        //Debug.Log(Time.time);
-    //        SituationEvent();
-    //    }
-    //}
 
-    //private void LoadAllSituationsFromFolder() {
-    //    //TODO: Loading Situation from Folder and selecting folder in Editor
-
-    //    //Object[] temp = Resources.LoadAll(situationsPath);
-    //    //foreach(Object o in temp) {
-    //    //    Debug.Log("tem");
-    //    //}
-    //    //foreach(Resources sit in Resources.LoadAll<ScriptableObject>(situationsPath)) {
-    //    //    Debug.Log("hello");
-    //    //}
-    //}
-
-    //private void SituationEvent() {
-    //    //Time.timeScale = 0;
-    //    Situation temp = SelectSituation();
-    //}
-
-    //private Situation SelectSituation() {
-    //    List<Situation> availableSituations = new List<Situation>();
-
-    //    //Foreach situation check every pointType and compare to current pointType Value. If threshold reached, add to availableSituations
-    //    for(int i = 0; i < situations.Count; i++) {
-    //        bool isAvailable = true;
-    //        for (int k = 0; k < pointsManager.pointTypes.Count; k++) {
-    //            if (pointsManager.pointTypes[k].score < situations[i].minPointValues[k]) {
-    //                isAvailable = false;
-    //            }
-    //        }
-    //        if (isAvailable) {
-    //            availableSituations.Add(situations[i]);
-    //        }
-    //    }
-
-    //    if(availableSituations.Count == 0) {
-    //        return null;
-    //    }
-    //    else {
-    //        return availableSituations[Random.Range(0, availableSituations.Count)];
-    //    }
-    //}
+    private void LoadSituations() {
+        Object[] temp = Resources.LoadAll<Situation>("");
+        foreach(Situation sit in temp) {
+            situations.Add(sit);
+        }
+    }
     #endregion
 
     private IEnumerator SituationTimer() {

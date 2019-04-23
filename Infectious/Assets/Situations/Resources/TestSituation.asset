@@ -13,5 +13,17 @@ MonoBehaviour:
   m_Name: TestSituation
   m_EditorClassIdentifier: 
   minPointValues: 000000000000000000000000
-  situationText: 
-  decisions: []
+  situationText: This is the first Test with 2 DCS;
+  decisions:
+  - decisionName: yay
+    values: 0c0000000000000000000000
+    tendencies:
+    - -0.5
+    - 0
+    - 0
+  - decisionName: negatorian
+    values: 000000000000000000000000
+    tendencies:
+    - 0
+    - 0
+    - 0
