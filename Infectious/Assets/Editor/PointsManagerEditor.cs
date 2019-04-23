@@ -11,14 +11,17 @@ public class PointsManagerEditor : Editor{
         //Column labels
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Type Name");
-        GUILayout.Label("Value");
+        GUILayout.Label("Score");
+        GUILayout.Label("Tendency");
         EditorGUILayout.EndHorizontal();
 
         //List for point-types
         for(int i = 0; i < pointsManager.pointTypes.Count; i++) {
             EditorGUILayout.BeginHorizontal();
             pointsManager.pointTypes[i].name = EditorGUILayout.TextField(pointsManager.pointTypes[i].name);
-            pointsManager.pointTypes[i].value = EditorGUILayout.IntField(pointsManager.pointTypes[i].value);
+            pointsManager.pointTypes[i].score = EditorGUILayout.IntField(pointsManager.pointTypes[i].score);
+            pointsManager.pointTypes[i].tendency = EditorGUILayout.Slider(pointsManager.pointTypes[i].tendency, -1, 1);
+
             if (GUILayout.Button("Delete")) {
                 pointsManager.pointTypes.Remove(pointsManager.pointTypes[i]);
                 break;

@@ -8,7 +8,8 @@ public class PointsManager : MonoBehaviour {
     [System.Serializable]
     public class PointType {
         public string name;
-        public int value;
+        public int score;
+        public float tendency;
     }
     public List<PointType> pointTypes = new List<PointType>();
 

@@ -1299,8 +1299,9 @@ MonoBehaviour:
   timeDelay: 5
   minTimeDelay: 1
   maxTimeDelay: 10
+  situationsPath: 
   situations:
-  - {fileID: 11400000, guid: 9318821c68a95884aa9527d6c1bcff83, type: 2}
+  - {fileID: 11400000, guid: 739c0a6fa91e7634eadd9bea1815a9bd, type: 2}
   - {fileID: 11400000, guid: 65593820350553943829f36d3a567235, type: 2}
   - {fileID: 11400000, guid: cdd1c0783099c304cbe20171fc1f9845, type: 2}
 --- !u!114 &7299471768009956999

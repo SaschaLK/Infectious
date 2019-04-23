@@ -65,7 +65,7 @@ public class SituationManager : MonoBehaviour {
         for(int i = 0; i < situations.Count; i++) {
             bool isAvailable = true;
             for (int k = 0; k < pointsManager.pointTypes.Count; k++) {
-                if (pointsManager.pointTypes[k].value < situations[i].minPointValues[k]) {
+                if (pointsManager.pointTypes[k].score < situations[i].minPointValues[k]) {
                     isAvailable = false;
                 }
             }
