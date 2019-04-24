@@ -6,7 +6,8 @@ public class AllegianceManager : MonoBehaviour {
 
     public static AllegianceManager instance;
 
-    public float transitionTime;
+    [Range(0.1f, 1f)]
+    public float infectionThreshold = 0.8f;
     public Color playerPartyColor;
     public int setLocationCharges = 1;
 

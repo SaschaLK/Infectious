@@ -7,33 +7,36 @@ public class Allegiance : MonoBehaviour {
 
     #region Setup
     //Basic Manager informations
-    private float transitionTime;
+    private float infectionThreshold;
     
     //Manipulatable attributes
     private Material mat;
     private Color baseColor;
     private Color playerPartyColor;
-    private int playerPartyColorR;
-    private int playerPartyColorG;
-    private int playerPartyColorB;
-    private int multiFactor = 100;
 
     //States and required Information for calculations
+    private float allegianceFactor;
+    private float baseColorValue;
+    private float playerPartyColorValue;
     private bool transitioning;
     private bool hasTransitioned;
 
     private void Start() {
-        FetchManagerInformation();
+        FetchInformation();
     }
 
-    private void FetchManagerInformation() {
+    private void FetchInformation() {
+        //Object components
         mat = GetComponent<Renderer>().material;
         baseColor = mat.color;
-        transitionTime = 1 / (AllegianceManager.instance.transitionTime * 10);
+
+        //Manager informations
         playerPartyColor = AllegianceManager.instance.playerPartyColor;
-        playerPartyColorR = Mathf.FloorToInt(playerPartyColor.r * multiFactor);
-        playerPartyColorG = Mathf.FloorToInt(playerPartyColor.g * multiFactor);
-        playerPartyColorB = Mathf.FloorToInt(playerPartyColor.b * multiFactor);
+        infectionThreshold = AllegianceManager.instance.infectionThreshold;
+
+        //Local variables and calculation requirements
+        baseColorValue = (baseColor.r + baseColor.g + baseColor.b) / 3;
+        playerPartyColorValue = (playerPartyColor.r + playerPartyColor.g + playerPartyColor.b) / 3;
     }
     #endregion
 
@@ -54,16 +57,19 @@ public class Allegiance : MonoBehaviour {
     private IEnumerator Transition() {
         transitioning = true;
         while (!hasTransitioned) {
-            //mat.color = Color.Lerp(mat.color, playerPartyColor, transitionTime);
-            //if (Mathf.FloorToInt(mat.color.r * multiFactor) == playerPartyColorR && Mathf.FloorToInt(mat.color.g * multiFactor) == playerPartyColorG && Mathf.FloorToInt(mat.color.b * multiFactor) == playerPartyColorB) {
-            //    hasTransitioned = true;
-            //    transitioning = false;
-            //    GetComponent<WorldTileBehaviour>().InfestNeighbours();
-            //    StopAllCoroutines();
-            //}
-            float temp = PointsManager.instance.unifiedPointsFactor - 1;
-            if(temp > 0) {
-                mat.color = new Color(Mathf.Lerp(baseColor.r, playerPartyColor.r, temp), Mathf.Lerp(baseColor.g, playerPartyColor.g, temp), Mathf.Lerp(baseColor.b, playerPartyColor.b, temp));
+            float speed = (PointsManager.instance.unifiedPointsFactor - 1) * Time.deltaTime;
+            if(speed != 0) {
+                mat.color = new Color(Mathf.Lerp(mat.color.r, playerPartyColor.r, speed), Mathf.Lerp(mat.color.g, playerPartyColor.g, speed), Mathf.Lerp(mat.color.b, playerPartyColor.b, speed));
+            }
+            allegianceFactor = (mat.color.r + mat.color.g + mat.color.b) / 3;
+            allegianceFactor = (allegianceFactor - baseColorValue) / (playerPartyColorValue - baseColorValue);
+            if(allegianceFactor > infectionThreshold) {
+                GetComponent<WorldTileBehaviour>().InfestNeighbours();
+            }
+            if(allegianceFactor >= 1) {
+                hasTransitioned = true;
+                transitioning = false;
+                StopAllCoroutines();
             }
             yield return new WaitForFixedUpdate();
         }
