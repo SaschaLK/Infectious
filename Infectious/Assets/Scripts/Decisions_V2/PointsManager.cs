@@ -13,6 +13,9 @@ public class PointsManager : MonoBehaviour {
         public string name;
         public int score;
         public float currentScore;
+        public float nullPoint;
+        public float medianPoint;
+        public float doublePoint;
         public float tendency;
     }
     public List<PointType> pointTypes = new List<PointType>();
