@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionTime: 10
   playerPartyColor: {r: 1, g: 0, b: 0, a: 0}
-  setLocationCharges: 1
+  setLocationCharges: 10
 --- !u!114 &1392434668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1669,29 +1669,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da40941f5444644b7b559335efc418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateTime: 5
+  tendencyImpactDevider: 1000
   pointTypes:
   - name: AverageIQ
     score: 100
-    currentScore: 0
+    currentScoreFloat: 0
+    currentScorePercentage: 0
     nullPoint: 0
     medianPoint: 100
     doublePoint: 200
     tendency: 0
   - name: Religiousness
     score: 50
-    currentScore: 0
+    currentScoreFloat: 0
+    currentScorePercentage: 0
     nullPoint: 0
     medianPoint: 50
     doublePoint: 100
     tendency: 0
   - name: Ignorance
-    score: 70
-    currentScore: 0
+    score: 50
+    currentScoreFloat: 0
+    currentScorePercentage: 0
     nullPoint: 0
     medianPoint: 50
     doublePoint: 100
     tendency: 0
+  unifiedPointsFactor: 0
 --- !u!1 &212175904848884785
 GameObject:
   m_ObjectHideFlags: 0

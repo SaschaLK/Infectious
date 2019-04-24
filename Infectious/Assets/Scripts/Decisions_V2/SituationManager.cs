@@ -64,7 +64,7 @@ public class SituationManager : MonoBehaviour {
     }
 
     public void ActivateDecision(int dec) {
-        pointsManager.UpdatePoints(currentSituation.decisions[dec]);
+        pointsManager.UpdatePointsWithDecision(currentSituation.decisions[dec]);
         DisableAllUIElements();
         StartCoroutine(SituationTimer());
     }

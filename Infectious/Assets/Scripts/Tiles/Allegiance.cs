@@ -40,14 +40,13 @@ public class Allegiance : MonoBehaviour {
     #region Allegiance and ColorChange logic
     private void OnMouseDown() {
         if(AllegianceManager.instance.setLocationCharges > 0) {
+            AllegianceManager.instance.setLocationCharges--;
             StartTransition();
         }
     }
 
     public void StartTransition() {
-        //Option to enable multiple coroutine and therefore set a faster transitioning rate.
         if(!transitioning && !hasTransitioned) {
-            AllegianceManager.instance.setLocationCharges--;
             StartCoroutine(Transition());
         }
     }
@@ -55,12 +54,16 @@ public class Allegiance : MonoBehaviour {
     private IEnumerator Transition() {
         transitioning = true;
         while (!hasTransitioned) {
-            mat.color = Color.Lerp(mat.color, playerPartyColor, transitionTime);
-            if (Mathf.FloorToInt(mat.color.r * multiFactor) == playerPartyColorR && Mathf.FloorToInt(mat.color.g * multiFactor) == playerPartyColorG && Mathf.FloorToInt(mat.color.b * multiFactor) == playerPartyColorB) {
-                hasTransitioned = true;
-                transitioning = false;
-                GetComponent<WorldTileBehaviour>().InfestNeighbours();
-                StopAllCoroutines();
+            //mat.color = Color.Lerp(mat.color, playerPartyColor, transitionTime);
+            //if (Mathf.FloorToInt(mat.color.r * multiFactor) == playerPartyColorR && Mathf.FloorToInt(mat.color.g * multiFactor) == playerPartyColorG && Mathf.FloorToInt(mat.color.b * multiFactor) == playerPartyColorB) {
+            //    hasTransitioned = true;
+            //    transitioning = false;
+            //    GetComponent<WorldTileBehaviour>().InfestNeighbours();
+            //    StopAllCoroutines();
+            //}
+            float temp = PointsManager.instance.unifiedPointsFactor - 1;
+            if(temp > 0) {
+                mat.color = new Color(Mathf.Lerp(baseColor.r, playerPartyColor.r, temp), Mathf.Lerp(baseColor.g, playerPartyColor.g, temp), Mathf.Lerp(baseColor.b, playerPartyColor.b, temp));
             }
             yield return new WaitForFixedUpdate();
         }

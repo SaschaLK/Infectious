@@ -8,8 +8,8 @@ public class PointsManagerEditor : Editor{
     public override void OnInspectorGUI() {
         PointsManager pointsManager = (PointsManager)target;
 
-        //Time delay between updating the points
-        pointsManager.updateTime = EditorGUILayout.FloatField("Update Interval Time (s)", pointsManager.updateTime);
+        //Impact of tendency to points
+        pointsManager.tendencyImpactDevider = EditorGUILayout.IntField("Tendency Impact Devider", pointsManager.tendencyImpactDevider);
         EditorGUILayout.Space();
 
         //List for point-types
