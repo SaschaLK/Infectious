@@ -9,7 +9,6 @@ public class AllegianceManager : MonoBehaviour {
     public float transitionTime;
     public Color playerPartyColor;
     public int setLocationCharges = 1;
-    public bool gameRunning;
 
     private void Awake() {
         instance = this;

@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &949202606
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1563,6 +1563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212175904760487518}
+  - component: {fileID: 5755237690695174868}
   - component: {fileID: 1200813486263837607}
   - component: {fileID: 2506199187828843840}
   - component: {fileID: 1392434668}
@@ -1591,6 +1592,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5755237690695174868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212175904760487512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7841814d183ef4783d54ac2e60f60f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameRunning: 1
 --- !u!114 &1200813486263837607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,11 +1657,6 @@ MonoBehaviour:
   timeDelay: 5
   minTimeDelay: 3
   maxTimeDelay: 15
-  situationsPath: 
-  situations:
-  - {fileID: 11400000, guid: 739c0a6fa91e7634eadd9bea1815a9bd, type: 2}
-  - {fileID: 11400000, guid: 65593820350553943829f36d3a567235, type: 2}
-  - {fileID: 11400000, guid: cdd1c0783099c304cbe20171fc1f9845, type: 2}
 --- !u!114 &7299471768009956999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,19 +1669,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6da40941f5444644b7b559335efc418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateTime: 1
+  updateTime: 5
   pointTypes:
-  - name: alpha
-    score: 1
+  - name: AverageIQ
+    score: 100
     currentScore: 0
-    tendency: 0.1
-  - name: beta
-    score: 0
-    currentScore: 0
+    nullPoint: 0
+    medianPoint: 100
+    doublePoint: 200
     tendency: 0
-  - name: gamma
-    score: 0
+  - name: Religiousness
+    score: 50
     currentScore: 0
+    nullPoint: 0
+    medianPoint: 50
+    doublePoint: 100
+    tendency: 0
+  - name: Ignorance
+    score: 70
+    currentScore: 0
+    nullPoint: 0
+    medianPoint: 50
+    doublePoint: 100
     tendency: 0
 --- !u!1 &212175904848884785
 GameObject:
