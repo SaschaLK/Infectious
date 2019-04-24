@@ -19,7 +19,8 @@ public class Allegiance : MonoBehaviour {
     private float baseColorValue;
     private float playerPartyColorValue;
     private bool transitioning;
-    private bool hasTransitioned;
+    public bool hasTransitioned;
+    private bool thresholdReached;
 
     private void Start() {
         FetchInformation();
@@ -50,6 +51,7 @@ public class Allegiance : MonoBehaviour {
 
     public void StartTransition() {
         if(!transitioning && !hasTransitioned) {
+            thresholdReached = false;
             StartCoroutine(Transition());
         }
     }
@@ -58,19 +60,25 @@ public class Allegiance : MonoBehaviour {
         transitioning = true;
         while (!hasTransitioned) {
             float speed = (PointsManager.instance.unifiedPointsFactor - 1) * Time.deltaTime;
-            if(speed != 0) {
-                mat.color = new Color(Mathf.Lerp(mat.color.r, playerPartyColor.r, speed), Mathf.Lerp(mat.color.g, playerPartyColor.g, speed), Mathf.Lerp(mat.color.b, playerPartyColor.b, speed));
-            }
+            mat.color = new Color(Mathf.Lerp(mat.color.r, playerPartyColor.r, speed), Mathf.Lerp(mat.color.g, playerPartyColor.g, speed), Mathf.Lerp(mat.color.b, playerPartyColor.b, speed));
             allegianceFactor = (mat.color.r + mat.color.g + mat.color.b) / 3;
             allegianceFactor = (allegianceFactor - baseColorValue) / (playerPartyColorValue - baseColorValue);
-            if(allegianceFactor > infectionThreshold) {
+            if(allegianceFactor > infectionThreshold && !thresholdReached) {
+                Debug.Log("infect");
+                thresholdReached = true;
                 GetComponent<WorldTileBehaviour>().InfestNeighbours();
             }
             if(allegianceFactor >= 1) {
+                Debug.Log("Stop trans");
                 hasTransitioned = true;
                 transitioning = false;
                 StopAllCoroutines();
             }
+            //else if (allegianceFactor <= 0 && !thresholdReached) {
+            //    Debug.Log("Start clear");
+            //    thresholdReached = true;
+            //    GetComponent<WorldTileBehaviour>().ClearNeighbours();
+            //}
             yield return new WaitForFixedUpdate();
         }
     }

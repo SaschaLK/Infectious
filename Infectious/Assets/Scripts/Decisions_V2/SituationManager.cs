@@ -15,9 +15,9 @@ public class SituationManager : MonoBehaviour {
     #endregion
 
     #region Situations and Times
-    public float timeDelay;
     public float minTimeDelay;
     public float maxTimeDelay;
+    private float timeDelay;
     private List<Situation> situations = new List<Situation>();
     private Situation currentSituation;
     #endregion

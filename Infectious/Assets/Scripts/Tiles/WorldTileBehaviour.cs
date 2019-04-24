@@ -109,4 +109,13 @@ public class WorldTileBehaviour : MonoBehaviour {
             }
         }
     }
+
+    public void ClearNeighbours() {
+        foreach(GameObject neighbour in neighbours) {
+            if(neighbour != null && neighbour.GetComponent<Allegiance>().hasTransitioned) {
+                neighbour.GetComponent<Allegiance>().hasTransitioned = false;
+                neighbour.GetComponent<Allegiance>().StartTransition();
+            }
+        }
+    }
 }

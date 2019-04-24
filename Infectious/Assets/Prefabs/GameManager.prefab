@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infectionThreshold: 0.8
   playerPartyColor: {r: 1, g: 0, b: 0, a: 0}
-  setLocationCharges: 10
+  setLocationCharges: 1
 --- !u!114 &1392434668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,7 +1654,6 @@ MonoBehaviour:
   - {fileID: 1010120447355741865}
   - {fileID: 2926392866875951227}
   - {fileID: 3982727566896215530}
-  timeDelay: 5
   minTimeDelay: 3
   maxTimeDelay: 15
 --- !u!114 &7299471768009956999
