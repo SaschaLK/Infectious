@@ -1630,9 +1630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907b35406cf8db0459e10b0479de13ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infectionThreshold: 0.8
+  infectionThreshold: 100
   playerPartyColor: {r: 1, g: 0, b: 0, a: 0}
   setLocationCharges: 1
+  allegianceFactorAccuracy: 100
 --- !u!114 &1392434668
 MonoBehaviour:
   m_ObjectHideFlags: 0
